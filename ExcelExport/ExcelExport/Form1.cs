@@ -27,7 +27,10 @@ namespace ExcelExport
         {
             InitializeComponent();
             LoadData();
+            dataGridView1.DataSource = lakasok;
             CreateExcel();
+            CreateTable();
+            FormatTable();
         }
 
         public void LoadData()
