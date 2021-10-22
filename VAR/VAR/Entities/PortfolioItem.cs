@@ -9,6 +9,6 @@ namespace VAR.Entities
     class PortfolioItem
     {
         public string Index { get; set; }
-        public decimal Value { get; set; }
+        public decimal Volume { get; set; }
     }
 }
