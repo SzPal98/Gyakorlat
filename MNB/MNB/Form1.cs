@@ -24,7 +24,7 @@ namespace MNB
             comboBox1.DataSource = currencies;
             MNBArfolyamServiceSoap mnbservice = new MNBArfolyamServiceSoapClient();
             GetExchangeRatesRequestBody request = new GetExchangeRatesRequestBody();
-            
+
             var response = mnbservice.GetExchangeRates(request);
             string result = response.GetExchangeRatesResult;
             RefreshData();
@@ -36,14 +36,15 @@ namespace MNB
             if (comboBox1.SelectedItem == null) return;
 
             Rates.Clear();
-            
+
             string xmlstring = consume();
             loadXml(xmlstring);
             dataGridView1.DataSource = Rates;
             Charting();
         }
 
-        string consume() {
+        string consume()
+        {
             MNBArfolyamServiceSoap mnbservice = new MNBArfolyamServiceSoapClient();
             GetExchangeRatesRequestBody request = new GetExchangeRatesRequestBody();
             request.currencyNames = comboBox1.SelectedItem.ToString();//"EUR";
@@ -68,8 +69,8 @@ namespace MNB
                 r.Currency = child.GetAttribute("curr");
                 r.value = decimal.Parse(child.InnerText);
                 int unit = int.Parse(child.GetAttribute("unit"));
-                if (unit !=0)
-                
+                if (unit != 0)
+
                     r.value = r.value / unit;
 
                 Rates.Add(r);
@@ -84,11 +85,17 @@ namespace MNB
             series.XValueMember = "Date";
             series.YValueMembers = "Value";
             series.BorderWidth = 2;
-            
+
 
             var chartArea = chart1.ChartAreas[0];
             chartArea.AxisX.MajorGrid.Enabled = false;
             chartArea.AxisY.MajorGrid.Enabled = false;
             chartArea.AxisY.IsStartedFromZero = false;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+    }
 }
