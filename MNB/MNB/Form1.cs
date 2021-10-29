@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using MNB.Entities;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace MNB
 {
@@ -58,7 +59,7 @@ namespace MNB
 
         private void Charting()
         {
-            chart1.DataSource = Rates()
+            chart1.DataSource = Rates;
             var series = chart1.Series[0];
             series.ChartType = SeriesChartType.Line;
             series.XValueMember = "Date";
@@ -66,7 +67,7 @@ namespace MNB
             series.BorderWidth = 2;
             
 
-            var chartArea = chartRateData.ChartAreas[0];
+            var chartArea = chart1.ChartAreas[0];
             chartArea.AxisX.MajorGrid.Enabled = false;
             chartArea.AxisY.MajorGrid.Enabled = false;
             chartArea.AxisY.IsStartedFromZero = false;
