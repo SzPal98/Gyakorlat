@@ -20,19 +20,28 @@ namespace MNB
         public Form1()
         {
             InitializeComponent();
-            consume();
+            RefreshData();
+        }
+
+        private void RefreshData()
+        {
+            Rates.Clear();
+            
+            string xmlstring = consume();
             loadXml(xmlstring);
+            dataGridView1.DataSource = Rates;
             Charting();
         }
 
         string consume() {
             MNBArfolyamServiceSoap mnbservice = new MNBArfolyamServiceSoapClient();
             GetExchangeRatesRequestBody request = new GetExchangeRatesRequestBody();
-            request.currencyNames = "EUR";
-            request.startDate = "2020-01-01";
-            request.endDate = "2020-06-30";
+            request.currencyNames = comboBox1.SelectedItem.ToString();//"EUR";
+            request.startDate = dateTimePicker1.Value.ToString("yyyy-mm-dd");// "2020-01-01";
+            request.endDate = dateTimePicker2.Value.ToString("yyyy-mm-dd");//"2020-06-30";
             var response = mnbservice.GetExchangeRates(request);
-            response.ge
+            string result = response.GetExchangeRatesResult;
+
 
 
         }
