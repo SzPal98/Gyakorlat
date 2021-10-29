@@ -17,14 +17,24 @@ namespace MNB
     public partial class Form1 : Form
     {
         BindingList<RateData> Rates = new BindingList<RateData>();
+        BindingList<string> currencies = new BindingList<string>();
         public Form1()
         {
             InitializeComponent();
+            comboBox1.DataSource = currencies;
+            MNBArfolyamServiceSoap mnbservice = new MNBArfolyamServiceSoapClient();
+            GetExchangeRatesRequestBody request = new GetExchangeRatesRequestBody();
+            
+            var response = mnbservice.GetExchangeRates(request);
+            string result = response.GetExchangeRatesResult;
             RefreshData();
         }
 
         private void RefreshData()
         {
+
+            if (comboBox1.SelectedItem == null) return;
+
             Rates.Clear();
             
             string xmlstring = consume();
