@@ -46,10 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstractions\IToyFactory.cs" />
     <Compile Include="Abstractions\toy.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\BallFactory.cs" />
+    <Compile Include="Entities\Car.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Entities\labda.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -73,6 +77,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Images\car.lnk">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
