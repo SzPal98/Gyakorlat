@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Mikulas.Abstractions
 {
-    class toy: Label
+    public abstract class toy: Label
     {
         public toy()
         {
@@ -23,11 +23,8 @@ namespace Mikulas.Abstractions
             DrawImage(e.Graphics);
         }
 
-        protected void DrawImage(Graphics g)
-        {
-            var ecset = new SolidBrush(Color.Blue);
-            g.FillEllipse(ecset, 0, 0, Width, Height);
-        }
+        public abstract void DrawImage(Graphics g);
+        
 
         public void Movetoy()
         {
