@@ -16,7 +16,7 @@ namespace Mikulas
     {
         List<toy> _toys = new List<toy>();
 
-        private BallFactory _factory;
+        private IToyFactory _factory;
         private Toy _nextToy;
 
 
@@ -34,16 +34,16 @@ namespace Mikulas
 
         private void CreateTimer_Tick(object sender, EventArgs e)
         {
-            labda ball = (labda)Factory.CreateNew();
-            _balls.Add(ball);
-            ball.Left = -ball.Width;
-            panel1.Controls.Add(ball);
+            toy toyy = (toy)Factory.CreateNew();
+            _toys.Add(toyy);
+            toyy.Left = -toyy.Width;
+            panel1.Controls.Add(toyy);
         }
 
         private void conveyorTimer_Tick(object sender, EventArgs e)
         {
             var maxPosition = 0;
-            foreach (var ball in _balls)
+            foreach (var ball in _toys)
             {
                 ball.Movetoy();
                 if (ball.Left > maxPosition)
@@ -52,9 +52,9 @@ namespace Mikulas
 
             if (maxPosition > 1000)
             {
-                var oldestBall = _balls[0];
+                var oldestBall = _toys[0];
                 panel1.Controls.Remove(oldestBall);
-                _balls.Remove(oldestBall);
+                _toys.Remove(oldestBall);
             }
         }
 
