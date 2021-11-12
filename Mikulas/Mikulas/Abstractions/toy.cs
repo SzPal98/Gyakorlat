@@ -23,7 +23,7 @@ namespace Mikulas.Abstractions
             DrawImage(e.Graphics);
         }
 
-        public abstract void DrawImage(Graphics g);
+        protected abstract void DrawImage(Graphics g);
         
 
         public void Movetoy()
