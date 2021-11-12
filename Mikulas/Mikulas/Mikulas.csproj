@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\BallFactory.cs" />
     <Compile Include="Entities\labda.cs">
       <SubType>Component</SubType>
     </Compile>
