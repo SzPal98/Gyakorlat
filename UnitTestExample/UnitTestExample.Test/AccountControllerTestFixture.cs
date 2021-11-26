@@ -83,17 +83,22 @@ namespace UnitTestExample.Test
         public void TestRegisterValidateException(string email, string password)
         {
             // Arrange
+            var accountServiceMock = new Mock<IAccountManager>(MockBehavior.Strict);
+            accountServiceMock
+                .Setup(m => m.CreateAccount(It.IsAny<Account>()))
+                .Throws<ApplicationException>();
             var accountController = new AccountController();
+            accountController.AccountManager = accountServiceMock.Object;
 
             // Act
             try
             {
-                var actualResult = accountController.Register(email, password);
+                var actualResult = accountController.Register(newEmail, newPassword);
                 Assert.Fail();
             }
             catch (Exception ex)
             {
-                Assert.IsInstanceOf<ValidationException>(ex);
+                Assert.IsInstanceOf<ApplicationException>(ex);
             }
 
             // Assert
