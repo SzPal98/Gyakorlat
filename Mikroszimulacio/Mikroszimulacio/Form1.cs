@@ -22,7 +22,8 @@ namespace Mikroszimulacio
             InitializeComponent();
 
             Population = GetPopulation(@"C:\Temp\nép-teszt.csv");
-            BirthProbablities = GetBirthProbabilities(@"C:\Temp\nép-teszt.csv");
+            BirthProbablities = GetBirthProbabilities(@"C:\Temp\születés.csv");
+            DeathProbablities = GetDeathProbabilities(@"C:\Temp\halál.csv");
         }
 
         public List<Person> GetPopulation(string csvPath)
@@ -66,8 +67,34 @@ namespace Mikroszimulacio
                     {
                         Age = int.Parse(line[0]),
                         NbrOfChildren = int.Parse(line[1]),
-                        p = double.Parse(line[2])
+                        P = double.Parse(line[2])
                         
+                    });
+                }
+            }
+
+
+            return null;
+        }
+
+        public List<DeathProbablity> GetDeathProbabilities(string csvPath)
+        {
+            List<DeathProbablity> deathhProbabilities = new List<DeathProbablity>();
+
+            using (StreamReader sr = new StreamReader(csvPath, Encoding.Default))
+            {
+                while (!sr.EndOfStream)
+                {
+                    var line = sr.ReadLine().Split(';');
+
+                    /*var p = new Person();
+                      p.BirthYear = int.Pase...*/
+                    deathhProbabilities.Add(new DeathProbablity()
+                    {
+                        Age = int.Parse(line[0]),
+                        NbrOfChildren = int.Parse(line[1]),
+                        P = double.Parse(line[2])
+
                     });
                 }
             }
