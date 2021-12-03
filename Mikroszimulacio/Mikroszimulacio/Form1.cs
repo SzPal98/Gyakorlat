@@ -26,6 +26,14 @@ namespace Mikroszimulacio
             Population = GetPopulation(@"C:\Temp\nép-teszt.csv");
             BirthProbablities = GetBirthProbabilities(@"C:\Temp\születés.csv");
             DeathProbablities = GetDeathProbabilities(@"C:\Temp\halál.csv");
+            StartSimulation();
+        }
+        
+        private void StartSimulation(int endYear, string csvPath)
+            {
+
+            
+            Population=GetPopulation(csvPath);
 
             for (int year = 2005; year <= 2024; year++)
             {
@@ -46,6 +54,7 @@ namespace Mikroszimulacio
             }
 
         }
+            }
 
         private void SimStep(int year, Person person)
         {
@@ -162,7 +171,19 @@ namespace Mikroszimulacio
 
         private void button1_Click(object sender, EventArgs e)
         {
+            StartSimulation((int)nudYear.Value, txtPath.Text);
+        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var ofd = new OpenFileDialog();
+            ofd.FileName=txtPath.Text;
+
+            if (ofd.ShowDialog() !=DialogResult.OK)
+	{
+                return;
+	}
+            txtPath.Text=ofd.FileName;
         }
     }
 }
