@@ -53,7 +53,7 @@ namespace Mikroszimulacio
                     string.Format("Év:{0} Fiúk:{1} Lányok:{2}\n", year, nbrOfMales, nbrOfFemales);
             }
 
-        }
+
             }
 
         private void SimStep(int year, Person person)
